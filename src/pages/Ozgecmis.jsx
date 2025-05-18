@@ -42,13 +42,13 @@ function Cv() {
         </section>
 
         <aside>
-          <h2>İletişim Bilgileri</h2>
+          <h2>İletişim:</h2>
           <p><strong>E-posta:</strong> poyrazefeozcan0@gmail.com</p>
           <p><strong>GitHub:</strong> <a href="https://github.com/yurious0" target="_blank">github.com/yurious0</a></p>
         </aside>
       </main>
 
-      <footer></footer>
+      <footer className="footer"></footer>
     </div>
   );
 }

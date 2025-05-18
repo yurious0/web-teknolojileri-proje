@@ -38,16 +38,7 @@ function Anasayfa() {
           <img src={chessImage} alt="Satranç" style={{ width: '100%', height: 'auto', marginTop: '10px' }} />
         </div>
       </div>
-      <footer style={{
-        backgroundColor: '#28a745',
-        color: 'white',
-        padding: '20px',
-        textAlign: 'center',
-        position: 'fixed',
-        bottom: 0,
-        width: '100%',
-        left: 0
-      }}>
+      <footer className="footer">
       </footer>
     </div>
   );
