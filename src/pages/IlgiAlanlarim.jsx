@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 const API_KEY = "f14df201b8da44cfb12ce03e4241ae53";
 
 const favoriteGames = [
-  "Counter-Strike",
+  "Counter-Strike 2",
   "Satisfactory",
   "Balatro",
   "Path of Exile",
@@ -53,7 +53,7 @@ function IlgiAlanlarım() {
             <p className="game-info"><strong>Metacritic puanı:</strong> {game.metacritic ?? "Yok"}</p>
             <p className="game-info"><strong>Oyunu oynayabileceğiniz platformlar:</strong> {game.platforms.map(platform => platform.platform.name).join(", ")}</p>
             <p className="game-info"><strong>Oyunun türü:</strong> {game.genres.map(genre => genre.name).join(", ")}</p>
-            
+
           </div>
         ))}
       </div>
