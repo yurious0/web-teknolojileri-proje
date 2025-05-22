@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
+import '../css/style.css';
 
 const API_KEY = "f14df201b8da44cfb12ce03e4241ae53";
 
 const favoriteGames = [
-  "Counter-Strike 2",
-  "Satisfactory",
-  "Balatro",
-  "Path of Exile",
+  "Counter-Strike 2", "Satisfactory", "Balatro",
+  "Path of Exile", "Titanfall 2", "Deadcells"
 ];
 
 function IlgiAlanlarım() {
@@ -57,6 +56,7 @@ function IlgiAlanlarım() {
           </div>
         ))}
       </div>
+      <footer className="footer"></footer>
     </div>
   );
 }

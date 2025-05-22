@@ -4,6 +4,7 @@ import cumalikizik from '../assets/cumalikizik.jpg';
 import ulucami from '../assets/ulucami.webp';
 import uludag from '../assets/uludag.jpg';
 import yesilturbe from '../assets/yesilturbe.jpg';
+import '../css/style.css';
 
 function Slider() {
   useEffect(() => {
@@ -17,8 +18,8 @@ function Slider() {
   }, []);
 
   return (
-    <div className="d-flex justify-content-center">
-      <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel" style={{ maxWidth: '800px', width: '100%' }}>
+    <div className="slider-container">
+      <div id="carouselExampleIndicators" className="carousel slide carousel-container" data-bs-ride="carousel">
         <div className="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -30,9 +31,8 @@ function Slider() {
             <a href="#cumalikizik">
               <img 
                 src={cumalikizik} 
-                className="d-block w-100" 
-                alt="Cumalıkızık" 
-                style={{ objectFit: 'cover', height: '400px', cursor: 'pointer' }} 
+                className="d-block w-100 carousel-image" 
+                alt="Cumalıkızık"
               />
             </a>
           </div>
@@ -40,9 +40,8 @@ function Slider() {
             <a href="#ulucami">
               <img 
                 src={ulucami} 
-                className="d-block w-100" 
-                alt="Ulu Cami" 
-                style={{ objectFit: 'cover', height: '400px', cursor: 'pointer' }} 
+                className="d-block w-100 carousel-image" 
+                alt="Ulu Cami"
               />
             </a>
           </div>
@@ -50,9 +49,8 @@ function Slider() {
             <a href="#uludag">
               <img 
                 src={uludag} 
-                className="d-block w-100" 
-                alt="Uludağ" 
-                style={{ objectFit: 'cover', height: '400px', cursor: 'pointer' }} 
+                className="d-block w-100 carousel-image" 
+                alt="Uludağ"
               />
             </a>
           </div>
@@ -60,9 +58,8 @@ function Slider() {
             <a href="#yesilturbe">
               <img 
                 src={yesilturbe} 
-                className="d-block w-100" 
-                alt="Yeşil Türbe" 
-                style={{ objectFit: 'cover', height: '400px', cursor: 'pointer' }} 
+                className="d-block w-100 carousel-image" 
+                alt="Yeşil Türbe"
               />
             </a>
           </div>

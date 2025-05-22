@@ -1,3 +1,206 @@
+/* ===== GLOBAL STYLES ===== */
+:root {
+  --primary-color: #28a745;
+  --primary-hover: #218838;
+  --text-dark: #333;
+  --text-light: #666;
+  --white: #fff;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+  --transition: transform 0.2s;
+}
+
+/* ===== LAYOUT CONTAINERS ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* ===== LOGIN FORM ===== */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 10px;
+}
+
+.login-box {
+  background: var(--white);
+  padding: 10px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  width: 300px;
+}
+
+.login-title {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group {
+  margin-bottom: 0.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--text-dark);
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.4rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+.login-button {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.login-button:hover {
+  background-color: var(--primary-hover);
+}
+
+/* ===== SLIDER ===== */
+.slider-container {
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-container {
+  max-width: 800px;
+  width: 100%;
+}
+
+.carousel-image {
+  object-fit: cover;
+  height: 400px;
+  cursor: pointer;
+}
+
+/* ===== HOME PAGE ===== */
+.about-box {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin: 1rem 0;
+}
+
+.info-box {
+  background-color: var(--primary-color);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin: 0.5rem;
+  color: var(--white);
+}
+
+.info-box img {
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 4px;
+}
+
+.box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* ===== GAMES PAGE ===== */
+.games-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.games-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--text-dark);
+  width: 100%;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  justify-items: center;
+  padding: 0;
+}
+
+.game-card {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: var(--transition);
+  width: 100%;
+  max-width: 350px;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+}
+
+.game-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.game-title {
+  padding: 1rem;
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--text-dark);
+}
+
+.game-info {
+  padding: 0.5rem 1rem;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .games-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -65,80 +268,166 @@ footer.footer {
 .navbar ul li a:hover {
   text-decoration: underline;
 }
-.about-box {
-  border: 2px solid #4B0082;
-  background-color: #E6E6FA;  
-  padding: 1rem;
-  border-radius: 8px;
-  margin-top: 1rem;
-  font-size: 1.1rem;
-  color: #2A004F; 
+
+/* İletişim Formu Stilleri */
+.contact-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
-.box-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-top: 1rem;
-}
-.info-box {
-  background-color: #28a745;
-  color: white;
-  padding: 1.5rem;
-  border-radius: 8px;
+
+.contact-title {
   text-align: center;
-  flex: 1;
-  min-width: 150px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #333;
+  margin-bottom: 2rem;
+  font-size: 2rem;
 }
-.info-box p {
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: white;
-}
-.games-container {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  background-color: #4B0082;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-.games-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  text-align: center;
-  color: white;
-}
-.games-grid {
+
+.contact-form {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px 0;
+  flex-direction: column;
+  gap: 1.5rem;
 }
-.game-card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 20px;
-  width: 250px;
-  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-  background-color: #4B0082;
-  transition: transform 0.2s;
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
-.game-image {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 4px;
+
+.form-group label {
+  font-weight: 600;
+  color: #444;
 }
-.game-title {
-  font-size: 20px;
-  margin: 15px 0 10px;
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="tel"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error {
+  border-color: #ff4d4f;
+}
+
+.error-message {
+  color: #ff4d4f;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.radio-group,
+.checkbox-group {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.radio-group label,
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.radio-group input[type="radio"],
+.checkbox-group input[type="checkbox"] {
+  width: 1.2rem;
+  height: 1.2rem;
+  cursor: pointer;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.submit-button,
+.reset-button {
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-button {
+  background-color: #4a90e2;
   color: white;
 }
-.game-info {
-  margin: 8px 0;
-  font-size: 16px;
-  color: white;
+
+.submit-button:hover {
+  background-color: #357abd;
+}
+
+.reset-button {
+  background-color: #f5f5f5;
+  color: #666;
+}
+
+.reset-button:hover {
+  background-color: #e8e8e8;
+}
+
+/* Dosya yükleme alanı için özel stil */
+.form-group input[type="file"] {
+  padding: 0.5rem;
+  border: 1px dashed #ddd;
+  border-radius: 5px;
+  background-color: #fafafa;
+  cursor: pointer;
+}
+
+.form-group input[type="file"]:hover {
+  border-color: #4a90e2;
+  background-color: #f0f7ff;
+}
+
+/* Responsive tasarım */
+@media (max-width: 768px) {
+  .contact-container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .radio-group,
+  .checkbox-group {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .submit-button,
+  .reset-button {
+    width: 100%;
+  }
 } 

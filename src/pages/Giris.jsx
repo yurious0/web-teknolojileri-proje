@@ -1,3 +1,6 @@
+import React from 'react';
+import '../css/style.css';
+
 function Giris() {
   const validateForm = async (e) => {
     e.preventDefault();
@@ -44,18 +47,40 @@ function Giris() {
   };
 
   return (
-    <div>
-      <h2>Giriş Yap</h2>
-      <h2>Giriş Sayfası</h2>
-      <form onSubmit={validateForm}>
-        <label htmlFor="username">Kullanıcı Adı (e-posta):</label><br />
-        <input type="text" id="username" name="username" /><br />
+    <div className="login-container">
+      <div className="login-box">
+        <h1 className="login-title">Giriş Yap</h1>
+        <form onSubmit={validateForm} className="login-form">
+          <div className="form-group">
+            <label htmlFor="username" className="form-label">
+              Kullanıcı Adı (e-posta):
+            </label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              className="form-input"
+            />
+          </div>
 
-        <label htmlFor="password">Şifre:</label><br />
-        <input type="password" id="password" name="password" /><br /><br />
+          <div className="form-group">
+            <label htmlFor="password" className="form-label">
+              Şifre:
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              className="form-input"
+            />
+          </div>
 
-        <button type="submit">Giriş Yap</button>
-      </form>
+          <button type="submit" className="login-button">
+            Giriş Yap
+          </button>
+        </form>
+      </div>
+      <footer className="footer"></footer>
     </div>
   );
 }

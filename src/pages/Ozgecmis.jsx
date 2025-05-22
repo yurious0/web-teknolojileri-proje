@@ -20,7 +20,6 @@ function Cv() {
           <h2>Yabancı Diller</h2>
           <ul>
             <li>İngilizce - İleri Seviye</li>
-            <li>Almanca - Başlangıç Seviyesi</li>
           </ul>
         </section>
 
