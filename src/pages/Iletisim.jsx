@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/style.css';
 
 function Iletisim() {
@@ -14,6 +14,16 @@ function Iletisim() {
   });
 
   const [errors, setErrors] = useState({});
+  const [isFormChecked, setIsFormChecked] = useState(false);
+  const [sentForms, setSentForms] = useState([]);
+
+  // Load sent forms from localStorage on component mount
+  useEffect(() => {
+    const savedForms = localStorage.getItem('sentForms');
+    if (savedForms) {
+      setSentForms(JSON.parse(savedForms));
+    }
+  }, []);
 
   const validateForm = () => {
     const newErrors = {};
@@ -76,6 +86,17 @@ function Iletisim() {
         });
 
         if (response.ok) {
+          // Add the sent form to the list with timestamp
+          const newForm = {
+            ...formData,
+            timestamp: new Date().toLocaleString('tr-TR'),
+            id: Date.now()
+          };
+          
+          const updatedForms = [newForm, ...sentForms];
+          setSentForms(updatedForms);
+          localStorage.setItem('sentForms', JSON.stringify(updatedForms));
+          
           alert('Form başarıyla gönderildi!');
           handleReset();
         } else {
@@ -121,6 +142,41 @@ function Iletisim() {
       dosya: null
     });
     setErrors({});
+  };
+
+  const handleJsControl = () => {
+    if (validateForm()) {
+      setIsFormChecked(true);
+      alert('Form JavaScript ile kontrol edildi ve geçerli!');
+    }
+  };
+
+  const handlePhpControl = async () => {
+    try {
+      const formDataToSend = new FormData();
+      Object.keys(formData).forEach(key => {
+        if (key === 'ilgiAlanlari') {
+          formDataToSend.append(key, JSON.stringify(formData[key]));
+        } else {
+          formDataToSend.append(key, formData[key]);
+        }
+      });
+
+      const response = await fetch('form-sonuc.php', {
+        method: 'POST',
+        body: formDataToSend
+      });
+
+      if (response.ok) {
+        setIsFormChecked(true);
+        alert('Form PHP ile kontrol edildi ve geçerli!');
+      } else {
+        alert('Form kontrolü sırasında bir hata oluştu.');
+      }
+    } catch (error) {
+      console.error('Form kontrol hatası:', error);
+      alert('Form kontrolü sırasında bir hata oluştu.');
+    }
   };
 
   return (
@@ -271,11 +327,48 @@ function Iletisim() {
           />
         </div>
 
-        <div className="button-group">
-          <button type="submit" className="submit-button">Gönder</button>
-          <button type="button" onClick={handleReset} className="reset-button">Temizle</button>
+        <div className="button-group" style={{ display: 'flex', justifyContent: 'space-between', gap: '10px' }}>
+          <div style={{ display: 'flex', gap: '10px' }}>
+            <button type="button" onClick={handleJsControl} className="control-button">
+              JavaScript ile Kontrol Et
+            </button>
+            <button type="button" onClick={handlePhpControl} className="control-button">
+              PHP ile Kontrol Et
+            </button>
+          </div>
+          <div style={{ display: 'flex', gap: '10px' }}>
+            <button type="button" onClick={handleReset} className="reset-button">Temizle</button>
+            <button type="submit" className="submit-button" disabled={!isFormChecked}>Gönder</button>
+          </div>
         </div>
       </form>
+
+      <div className="sent-forms-section">
+        <h3>Gönderilen Formlar</h3>
+        {sentForms.length === 0 ? (
+          <p className="no-forms">Henüz gönderilmiş form bulunmamaktadır.</p>
+        ) : (
+          <div className="forms-list">
+            {sentForms.map((form) => (
+              <div key={form.id} className="form-comment">
+                <div className="form-comment-header">
+                  <span className="form-author">{form.adSoyad}</span>
+                  <span className="form-date">{form.timestamp}</span>
+                </div>
+                <div className="form-comment-content">
+                  <p><strong>Konu:</strong> {form.konu}</p>
+                  <p><strong>Mesaj:</strong> {form.mesaj}</p>
+                  <div className="form-details">
+                    <p><strong>İletişim:</strong> {form.email} | {form.telefon}</p>
+                    <p><strong>Cinsiyet:</strong> {form.cinsiyet}</p>
+                    <p><strong>İlgi Alanları:</strong> {form.ilgiAlanlari.join(', ')}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

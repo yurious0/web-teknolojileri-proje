@@ -1,48 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../css/style.css';
 
 function Giris() {
+  const [formData, setFormData] = useState({
+    username: '',
+    password: ''
+  });
+
+  const [error, setError] = useState('');
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
   const validateForm = async (e) => {
     e.preventDefault();
-    const email = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+    setError('');
 
-    if (email === "" || password === "") {
-      alert("Lütfen tüm alanları doldurun.");
-      return false;
+    if (!formData.username || !formData.password) {
+      setError("Lütfen tüm alanları doldurun.");
+      return;
     }
 
     const emailPattern = /^[a-z0-9._%+-]+@sakarya\.edu\.tr$/;
-    if (!emailPattern.test(email)) {
-      alert("Geçerli bir Sakarya Üniversitesi e-posta adresi giriniz.");
-      return false;
+    if (!emailPattern.test(formData.username)) {
+      setError("Geçerli bir Sakarya Üniversitesi e-posta adresi giriniz.");
+      return;
     }
 
     try {
-      const response = await fetch('login.php', {
+      const formDataToSend = new URLSearchParams();
+      formDataToSend.append('username', formData.username);
+      formDataToSend.append('password', formData.password);
+
+      const API_URL = 'https://webprojem.infinityfree.net/login.php';
+      
+      const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: new URLSearchParams({
-          username: email,
-          password: password
-        })
+        body: formDataToSend
       });
 
       const data = await response.json();
       
       if (response.ok && data.success) {
         alert(`Hoşgeldiniz "${data.studentNumber}"`);
-        window.location.href = "/anasayfa";
+        window.location.href = "/";
       } else {
-        alert(data.message || "Giriş başarısız!");
-        window.location.href = "/giris";
+        setError(data.message || "Giriş başarısız!");
       }
     } catch (error) {
       console.error('Giriş hatası:', error);
-      alert("Bir hata oluştu. Lütfen tekrar deneyin.");
-      window.location.href = "/giris";
+      setError("Bir hata oluştu. Lütfen tekrar deneyin.");
     }
   };
 
@@ -59,6 +74,8 @@ function Giris() {
               type="text"
               id="username"
               name="username"
+              value={formData.username}
+              onChange={handleChange}
               className="form-input"
             />
           </div>
@@ -71,9 +88,13 @@ function Giris() {
               type="password"
               id="password"
               name="password"
+              value={formData.password}
+              onChange={handleChange}
               className="form-input"
             />
           </div>
+
+          {error && <div className="error-message">{error}</div>}
 
           <button type="submit" className="login-button">
             Giriş Yap
