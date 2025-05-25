@@ -37,12 +37,13 @@ function Giris() {
       formDataToSend.append('username', formData.username);
       formDataToSend.append('password', formData.password);
 
-      const API_URL = 'https://webprojem.infinityfree.net/login.php';
+      const API_URL = 'https://webproje.free.nf/login.php';
       
       const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
+          'Accept': 'application/json'
         },
         body: formDataToSend
       });
